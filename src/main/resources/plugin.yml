@@ -1,0 +1,46 @@
+name: HavenCore
+version: 1.0.0
+main: com.tizem.havencore.HavenCore
+api-version: '1.21'
+authors: [Tizem]
+description: Staff tools, auto-restart and 5 Discord bots
+libraries:
+  - net.dv8tion:JDA:5.2.2
+
+commands:
+  sus:
+    description: Mark/unmark a player as suspicious
+    usage: /sus <player> [reason] | /sus list
+    permission: havencore.staff
+  watch:
+    description: Spectate a player, /watch off to return
+    usage: /watch <player|off>
+    permission: havencore.staff
+  freeze:
+    description: Freeze/unfreeze a player
+    usage: /freeze <player>
+    permission: havencore.staff
+  sc:
+    description: Staff chat
+    usage: /sc <message>
+    aliases: [staffchat]
+    permission: havencore.staff
+  mutechat:
+    description: Mute/unmute public chat
+    usage: /mutechat
+    permission: havencore.staff
+  hrestart:
+    description: Restart the server with a countdown
+    usage: /hrestart [seconds|cancel]
+    permission: havencore.admin
+  havencore:
+    description: HavenCore admin
+    usage: /havencore <reload|bots>
+    aliases: [hc]
+    permission: havencore.admin
+
+permissions:
+  havencore.staff:
+    default: op
+  havencore.admin:
+    default: op

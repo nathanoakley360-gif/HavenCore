@@ -1,0 +1,56 @@
+# ---------------------------------------------------------------
+# HavenCore config. Leave a bot token empty to disable that bot.
+# Every bot must be invited to your Discord server.
+# Monitor, Commands and Chat bots need "Message Content Intent" turned
+# on in the Discord developer portal (Bot tab).
+# ---------------------------------------------------------------
+discord:
+  bots:
+    # Bot 1: live player list embed + "watching N players" status
+    players:
+      token: ""
+      channel-id: ""
+      update-seconds: 30
+    # Bot 2: server status embed (TPS, RAM, uptime) + online/offline/restarting
+    status:
+      token: ""
+      channel-id: ""
+      update-seconds: 30
+    # Bot 3: monitors game chat + Discord chat, logs staff actions
+    monitor:
+      token: ""
+      channel-id: ""            # staff log channel
+      chat-channel-id: ""       # the Discord chat channel to watch (same as chat bot channel)
+      alert-role-id: ""         # role pinged on flagged messages (optional)
+      log-all-chat: false
+    # Bot 4: run console commands from a Discord channel
+    commands:
+      token: ""
+      channel-id: ""
+      prefix: ""                # e.g. "!" (empty = every message is a command)
+      allowed-role-ids: []      # role IDs allowed to run commands (admins always can)
+      blocked-commands: [stop, restart, op, deop, ban-ip, pardon-ip, reload, whitelist]
+    # Bot 5: game chat <-> Discord chat bridge
+    chat:
+      token: ""
+      channel-id: ""
+      game-to-discord: true
+      discord-to-game: true
+      join-leave: true
+      deaths: true
+
+monitor:
+  blocked-words: []             # e.g. [badword1, badword2]
+
+restart:
+  # Plain /stop (console, panel Stop button, ops) becomes a restart with a countdown.
+  # "stop force" really stops the server (and creates a no-restart file for start.sh).
+  convert-stop: true
+  countdown-seconds: 30
+  schedule-hours: 0             # 0 = off. 6 = auto restart every 6 hours
+  # Pterodactyl / panel hosting: the plugin sends a "restart" power signal.
+  # Leave blank if you use start.sh instead.
+  panel:
+    url: ""                     # e.g. https://panel.yourhost.com
+    server-id: ""               # short server id from the panel URL
+    api-key: ""                 # CLIENT api key (ptlc_...)
